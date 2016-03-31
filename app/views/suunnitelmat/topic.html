@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- TOPICS -->
+
+<div class="page-header">
+    <h1 class="pull-left">Keskustelufoorumi</h1>
+    <div class="clearfix"></div>
+</div>
+
+<ol class="breadcrumb">
+    <li><a href="frontpage">Etusivu</a></li>
+    <li><a href="topic">Random asiaa</a></li>
+</ol>
+
+<table class="table forum table-striped">
+    <thead>
+        <tr>
+            <th class="cell-stat"></th>
+            <th><div class="h3">Random asiaa</div></th>
+<th class="cell-stat text-center hidden-xs hidden-sm">Viestit</th>
+<th class="cell-stat-2x hidden-xs hidden-sm">Viimeisin viesti</th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+        <td class="text-center"><i class="fa fa-question fa-2x text-primary"></i></td>
+        <td>
+            <h4><a href="messages">asdf</a><br><small>asdfasdf</small></h4>
+        </td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">256</a></td>
+        <td class="hidden-xs hidden-sm"><a href="#">Martti Ahtisaari</a><br><small><i class="glyphicon glyphicon-time"></i> 1 tunti sitten</small></td>
+    </tr>
+    <tr>
+        <td class="text-center"><i class="fa fa-exclamation fa-2x text-danger"></i></td>
+        <td>
+            <h4><a href="#">asdfearadsf</a><br><small>asdfaerasdfasdfasd</small></h4>
+        </td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">123</a></td>
+        <td class="hidden-xs hidden-sm"><a href="#">Erkki Kekkonen</a><br><small><i class="glyphicon glyphicon-time"></i> 2 päivää sitten</small></td>
+    </tr>
+    <tr>
+        <td class="text-center"><i class="fa fa-exclamation fa-2x text-danger"></i></td>
+        <td>
+            <h4><a href="#">heokhoekohe</a><br><small>cvkmnbmn</small></h4>
+        </td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">54</a></td>
+        <td class="hidden-xs hidden-sm"><a href="#">Erkki Kekkonen</a><br><small><i class="glyphicon glyphicon-time"></i> 4 päivää sitten</small></td>
+    </tr>
+    <tr>
+        <td class="text-center"><i class="fa fa-exclamation fa-2x text-danger"></i></td>
+        <td>
+            <h4><a href="#">xcvmbnxvcnbhmxcvb</a><br><small>fdcfg</small></h4>
+        </td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">453</a></td>
+        <td class="hidden-xs hidden-sm"><a href="#">Erkki Kekkonen</a><br><small><i class="glyphicon glyphicon-time"></i> 5 päivää sitten</small></td>
+    </tr>
+</tbody>
+</table>
+
+<!-- END OF TOPICS -->
+
+<!-- PAGINATION -->
+
+<nav class="pull-right">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="active">
+            <span>1 <span class="sr-only">(current)</span></span>
+        </li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- END OF PAGINATION -->
+
+{% endblock %}

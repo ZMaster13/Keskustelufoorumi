@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+    <h1 class="pull-left">Keskustelufoorumi</h1>
+    <div class="clearfix"></div>
+</div>
+
+<ol class="breadcrumb">
+    <li><a href="frontpage">Etusivu</a></li>
+</ol>
+
+<table class="table forum table-striped">
+    <thead>
+        <tr>
+            <th class="cell-stat"></th>
+            <th>
+    <h3>Ilmoitukset</h3>
+</th>
+<th class="cell-stat text-center hidden-xs hidden-sm">Aiheet</th>
+<th class="cell-stat text-center hidden-xs hidden-sm">Viestit</th>
+<th class="cell-stat-2x hidden-xs hidden-sm">Viimeisin viesti</th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+        <td class="text-center"><i class="fa fa-question fa-2x text-primary"></i></td>
+        <td>
+            <h4><a href="topic">Random asiaa</a><br><small>Lorem ipsum</small></h4>
+        </td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">24</a></td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">256</a></td>
+        <td class="hidden-xs hidden-sm"><a href="#">Martti Ahtisaari</a><br><small><i class="glyphicon glyphicon-time"></i> 2 viikkoa sitten</small></td>
+    </tr>
+    <tr>
+        <td class="text-center"><i class="fa fa-exclamation fa-2x text-danger"></i></td>
+        <td>
+            <h4><a href="#">Random juttuja</a><br><small>Dolor sit amet</small></h4>
+        </td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">454</a></td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">4520</a></td>
+        <td class="hidden-xs hidden-sm"><a href="#">Erkki Kekkonen</a><br><small><i class="glyphicon glyphicon-time"></i> 3 päivää sitten</small></td>
+    </tr>
+</tbody>
+</table>
+<table class="table forum table-striped">
+    <thead>
+        <tr>
+            <th class="cell-stat"></th>
+            <th>
+    <h3>Keskustelu</h3>
+</th>
+<th class="cell-stat text-center hidden-xs hidden-sm">Aiheet</th>
+<th class="cell-stat text-center hidden-xs hidden-sm">Viestit</th>
+<th class="cell-stat-2x hidden-xs hidden-sm">Viimeisin viesti</th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+        <td class="text-center"><i class="fa fa-heart fa-2x text-primary"></i></td>
+        <td>
+            <h4><a href="#">Java on jees</a><br><small>Heh</small></h4>
+        </td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">32</a></td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">123</a></td>
+        <td class="hidden-xs hidden-sm"><a href="#">Arto Vihavainen</a><br><small><i class="glyphicon glyphicon-time"></i> 2 vuotta sitten</small></td>
+    </tr>
+    <tr>
+        <td class="text-center"><i class="fa fa-magic fa-2x text-primary"></i></td>
+        <td>
+            <h4><a href="#">Haha</a><br><small>Huh</small></h4>
+        </td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">123456</a></td>
+        <td class="text-center hidden-xs hidden-sm"><a href="#">123456</a></td>
+        <td class="hidden-xs hidden-sm"><a href="#">Tarja Halonen</a><br><small><i class="glyphicon glyphicon-time"></i> 23 minuuttia sitten</small></td>
+    </tr>
+</tbody>
+</table>
+
+{% endblock %}

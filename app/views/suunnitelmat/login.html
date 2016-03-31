@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card card-container">
+    <form class="form-signin">
+        <input type="text" id="inputUsername" class="form-control" placeholder="Käyttäjätunnus" autofocus>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Salasana">
+        <div id="remember" class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Muista minut
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Kirjaudu sisään</button>
+    </form>
+    <a href="#" class="forgot-password">
+        Unohtuiko salasana?
+    </a>
+</div>
+
+{% endblock %}
+
+{% block navigation %}{% endblock %}
