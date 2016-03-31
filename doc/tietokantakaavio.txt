@@ -1,0 +1,17 @@
+[Category|(pk) id : long; name : string]
+[Area|(pk) id : long; (fk) category : long; name : string]
+[Topic|(pk) id : long; (fk) area : long; (fk) user : long; name : string]
+[Message|(pk) id : long; (fk) topic : long; (fk) user : long; title : string; message : string]
+[User|(pk) id : long; name : string; password : string; hash : string]
+[Group|(pk) id : long; name : string; permissions : int]
+[UserGroup|(fk) user : long; (fk) group : long]
+
+[Category]1-*[Area]
+[Area]1-*[Topic]
+[Topic]1-*[Message]
+
+[Message]*-1[User]
+[Topic]*-1[User]
+
+[Group]1-*[UserGroup]
+[UserGroup]*-1[User]
