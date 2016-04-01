@@ -3,12 +3,12 @@
 [Topic|(pk) id : serial; (fk) area : int; (fk) member : int; name : string]
 [Message|(pk) id : serial; (fk) topic : int; (fk) member : int]
 [Version|(pk) id : serial; (fk) message : int; (fk) member : int; title : string; content : string; time : timestamp]
-[Member|(pk) id : serial; name : string; password : string; hash : string]
+[Member|(pk) id : serial; name : string; password : string; salt : string]
 [Team|(pk) id : serial; name : string; permissions : int]
 [MemberTeam|(fk) member : int; (fk) team : int]
 
-[Category]1-*[Area]
-[Area]1-*[Topic]
+[Area]1-*[Category]
+[Topic]1-*[Area]
 [Topic]1-*[Message]
 
 [Message]*-1[Member]

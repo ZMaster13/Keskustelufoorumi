@@ -1,0 +1,17 @@
+[Category]
+[Area]
+[Topic]
+[Message]
+[Version]
+[Member]
+[Team]
+
+[Category]1-*[Area]
+[Area]1-*[Topic]
+[Topic]++-*[Message]
+[Member]-[Topic]
+
+[Member]1-*[Message]
+[Team]*-*[Member]
+[Message]++-1..*[Version]
+[Member]1-*[Version]
