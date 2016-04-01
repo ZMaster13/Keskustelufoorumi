@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- TOPICS -->
-
 <div class="page-header">
     <h1 class="pull-left">Keskustelufoorumi</h1>
     <div class="clearfix"></div>
@@ -10,55 +8,114 @@
 
 <ol class="breadcrumb">
     <li><a href="frontpage">Etusivu</a></li>
-    <li><a href="topic">Random asiaa</a></li>
+    <li><a href="area">Random asiaa</a></li>
+    <li><a href="topic">asdf</a></li>
 </ol>
 
-<table class="table forum table-striped">
-    <thead>
-        <tr>
-            <th class="cell-stat"></th>
-            <th><div class="h3">Random asiaa</div></th>
-<th class="cell-stat text-center hidden-xs hidden-sm">Viestit</th>
-<th class="cell-stat-2x hidden-xs hidden-sm">Viimeisin viesti</th>
-</tr>
-</thead>
-<tbody>
-    <tr>
-        <td class="text-center"><i class="fa fa-question fa-2x text-primary"></i></td>
-        <td>
-            <h4><a href="messages">asdf</a><br><small>asdfasdf</small></h4>
-        </td>
-        <td class="text-center hidden-xs hidden-sm"><a href="#">256</a></td>
-        <td class="hidden-xs hidden-sm"><a href="#">Martti Ahtisaari</a><br><small><i class="glyphicon glyphicon-time"></i> 1 tunti sitten</small></td>
-    </tr>
-    <tr>
-        <td class="text-center"><i class="fa fa-exclamation fa-2x text-danger"></i></td>
-        <td>
-            <h4><a href="#">asdfearadsf</a><br><small>asdfaerasdfasdfasd</small></h4>
-        </td>
-        <td class="text-center hidden-xs hidden-sm"><a href="#">123</a></td>
-        <td class="hidden-xs hidden-sm"><a href="#">Erkki Kekkonen</a><br><small><i class="glyphicon glyphicon-time"></i> 2 päivää sitten</small></td>
-    </tr>
-    <tr>
-        <td class="text-center"><i class="fa fa-exclamation fa-2x text-danger"></i></td>
-        <td>
-            <h4><a href="#">heokhoekohe</a><br><small>cvkmnbmn</small></h4>
-        </td>
-        <td class="text-center hidden-xs hidden-sm"><a href="#">54</a></td>
-        <td class="hidden-xs hidden-sm"><a href="#">Erkki Kekkonen</a><br><small><i class="glyphicon glyphicon-time"></i> 4 päivää sitten</small></td>
-    </tr>
-    <tr>
-        <td class="text-center"><i class="fa fa-exclamation fa-2x text-danger"></i></td>
-        <td>
-            <h4><a href="#">xcvmbnxvcnbhmxcvb</a><br><small>fdcfg</small></h4>
-        </td>
-        <td class="text-center hidden-xs hidden-sm"><a href="#">453</a></td>
-        <td class="hidden-xs hidden-sm"><a href="#">Erkki Kekkonen</a><br><small><i class="glyphicon glyphicon-time"></i> 5 päivää sitten</small></td>
-    </tr>
-</tbody>
-</table>
+<!-- MESSAGES -->
 
-<!-- END OF TOPICS -->
+<div class="panel panel-default">
+    <div class="panel-heading message-topic">
+        <h3 class="panel-title pull-left">Random viesti</h3>
+
+        <div class="input-group">
+            <div class="input-group-btn btn-group-xs">
+                <button class="btn btn-default pull-right message-tools"><i class="glyphicon glyphicon-remove"></i></button>
+                <a href="editmessage" class="btn btn-default pull-right message-tools" role="button"><i class="glyphicon glyphicon-edit"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        Lorem ipsum dolor sit amet, an ubique propriae fabellas
+        eos. Ut alienum consetetur sadipscing per. Elit luptatum
+        consequat ne eum, per vocibus explicari ex, eu sea nulla
+        assentior. Eum ad dicunt aeterno accusam. Ut veritus
+        dolores per, ad veniam dolorem eam. Te rationibus
+        neglegentur his, eu eum modo vero.
+    </div>
+    <div class="panel-footer message-info">
+        <div class="pull-left user-info">
+            <small>Martti ahtisaari</small>
+        </div>
+        <div class="pull-right user-info">
+            <small>Lähetetty 29.4.2015 12.23</small>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading message-topic">
+        <h3 class="panel-title pull-left">Toinen random viesti</h3>
+
+        <div class="input-group">
+            <div class="input-group-btn btn-group-xs">
+                <button class="btn btn-default pull-right message-tools"><i class="glyphicon glyphicon-remove"></i></button>
+                <button class="btn btn-default pull-right message-tools"><i class="glyphicon glyphicon-edit"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        Lorem ipsum dolor sit amet, an ubique propriae fabellas
+        eos. Ut alienum consetetur sadipscing per. Elit luptatum
+        consequat ne eum, per vocibus explicari ex, eu sea nulla
+        assentior. Eum ad dicunt aeterno accusam. Ut veritus
+        dolores per, ad veniam dolorem eam. Te rationibus
+        neglegentur his, eu eum modo vero.
+    </div>
+    <div class="panel-footer message-info">
+        <div class="pull-left user-info">
+            <small>Tarja Halonen</small>
+        </div>
+        <div class="pull-right user-info">
+            <small>Lähetetty 25.4.2015 15.23</small>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading message-topic">
+        <h3 class="panel-title pull-left">Kolmas random viesti</h3>
+
+        <div class="input-group">
+            <div class="input-group-btn btn-group-xs">
+                <button class="btn btn-default pull-right message-tools"><i class="glyphicon glyphicon-remove"></i></button>
+                <button class="btn btn-default pull-right message-tools"><i class="glyphicon glyphicon-edit"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p>Lorem ipsum dolor sit amet, an ubique propriae fabellas
+            eos. Ut alienum consetetur sadipscing per. Elit luptatum
+            consequat ne eum, per vocibus explicari ex, eu sea nulla
+            assentior. Eum ad dicunt aeterno accusam. Ut veritus
+            dolores per, ad veniam dolorem eam. Te rationibus
+            neglegentur his, eu eum modo vero.</p>
+
+        <p>Vix ad prima consul comprehensam. Nam partem referrentur
+            dissentiunt at, utroque percipitur cum id, an vel prima
+            equidem. Ea tation consetetur voluptatibus vix, sed in
+            clita doctus deserunt, tation interesset in has. Ne duo
+            aeque persequeris, ornatus veritus at vel.</p>
+
+        <p>Ex amet regione elaboraret sea, vis ut mutat ceteros, eu
+            vim nisl populo praesent. Aperiam dignissim assentior ad
+            cum, dicat debet an est, est vidisse alterum pertinacia
+            ea. Nostrum delicata scripserit nec ei, quidam admodum
+            iudicabit in ius. Quo ea esse nonumy aliquam, semper
+            democritum sententiae mei te. Eos modo tempor aliquando
+            et.</p>
+    </div>
+    <div class="panel-footer message-info">
+        <div class="pull-left user-info">
+            <small>Urho Kekkonen</small>
+        </div>
+        <div class="pull-right user-info">
+            <small>Lähetetty 22.4.2015 22.23</small>
+        </div>
+    </div>
+</div>
+
+<!-- END OF MESSAGES -->
 
 <!-- PAGINATION -->
 
@@ -85,5 +142,30 @@
 </nav>
 
 <!-- END OF PAGINATION -->
+
+<!-- SEND MESSAGE -->
+
+<div class="clearfix"></div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Lähetä uusi viesti</h3>
+    </div>
+    <div class="panel-body">
+        <form role="form">
+            <div class="form-group">
+                <label for="topic">Otsikko</label>
+                <input type="text" class="form-control" id="topic" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Viesti</label>
+                <textarea class="form-control" rows="8" id="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-default" id="submit">Lähetä</button>
+        </form>
+    </div>
+</div>
+
+<!-- END OF SEND MESSAGE -->
 
 {% endblock %}

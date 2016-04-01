@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Muokkaa viestiä</h3>
+    </div>
+    <div class="panel-body">
+        <form role="form">
+            <div class="form-group">
+                <label for="topic">Otsikko</label>
+                <input type="text" class="form-control" id="topic" value="Random viesti" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Viesti</label>
+                <textarea class="form-control" rows="8" id="message" required>Lorem ipsum dolor sit amet, an ubique propriae fabellas eos. Ut alienum consetetur sadipscing per. Elit luptatum consequat ne eum, per vocibus explicari ex, eu sea nulla assentior. Eum ad dicunt aeterno accusam. Ut veritus dolores per, ad veniam dolorem eam. Te rationibus neglegentur his, eu eum modo vero.</textarea>
+            </div>
+            <button type="submit" class="btn btn-default" id="submit">Lähetä</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -8,14 +8,18 @@
     HelloWorldController::frontpage();
   });
   
+  $routes->get('/area', function() {
+    HelloWorldController::area();
+  });
+  
   $routes->get('/topic', function() {
     HelloWorldController::topic();
   });
   
-  $routes->get('/messages', function() {
-    HelloWorldController::messages();
-  });
-  
   $routes->get('/login', function() {
     HelloWorldController::login();
+  });
+  
+  $routes->get('/editmessage', function() {
+    HelloWorldController::editmessage();
   });
