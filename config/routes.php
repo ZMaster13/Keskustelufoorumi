@@ -4,6 +4,10 @@
     HelloWorldController::index();
   });
   
+  $routes->get('/sandbox', function() {
+    HelloWorldController::sandbox();
+  });
+  
   $routes->get('/frontpage', function() {
     HelloWorldController::frontpage();
   });
