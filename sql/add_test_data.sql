@@ -27,6 +27,10 @@ INSERT INTO Area
 	(category, name)
 	VALUES (1, 'Testialue 2');
 
+INSERT INTO Area
+	(category, name)
+	VALUES (2, 'Testialue 3');
+
 INSERT INTO Topic
 	(area, member, name)
 	VALUES (1, 1, 'Testiaihe');

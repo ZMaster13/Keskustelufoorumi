@@ -6,16 +6,16 @@ class Member extends ExtendedBaseModel {
     public function __construct($attributes) {
         parent::__construct($attributes);
     }
-    
-    public static function all() {
-        return parent::getList('Member');
-    }
 
     public static function find($id) {
         return parent::getOne('Member', $id);
     }
+    
+    public static function findAll() {
+        return parent::getList('Member');
+    }
 
-    protected static function makeOne($row) {
+    public static function makeOne($row) {
         $member = new Member(array(
             'id' => $row['id'],
             'name' => $row['name'],

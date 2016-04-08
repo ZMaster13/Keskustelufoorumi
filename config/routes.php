@@ -9,15 +9,18 @@
   });
   
   $routes->get('/frontpage', function() {
-    HelloWorldController::frontpage();
+      FrontpageController::index();
   });
   
-  $routes->get('/area', function() {
-    HelloWorldController::area();
+  $routes->get('/area/:id', function($id) {
+    AreaController::index($id);
   });
   
-  $routes->get('/topic', function() {
-    HelloWorldController::topic();
+  $routes->get('/topic/:id', function($id) {
+    TopicController::index($id);
+  });
+  $routes->post('/topic/:id', function($id) {
+    TopicController::save($id);
   });
   
   $routes->get('/login', function() {

@@ -1,24 +1,25 @@
 <?php
 
 class Category extends ExtendedBaseModel {
-    public $id, $name;
+    public $id, $name, $areas;
     
     public function __construct($attributes) {
         parent::__construct($attributes);
     }
     
-    public static function all() {
-        return parent::getList('Category');
-    }
-
     public static function find($id) {
         return parent::getOne('Category', $id);
     }
+    
+    public static function findAll() {
+        return parent::getList('Category');
+    }
 
-    protected static function makeOne($row) {
+    public static function makeOne($row) {
         $category = new Category(array(
             'id' => $row['id'],
-            'name' => $row['name']
+            'name' => $row['name'],
+            'areas' => Area::findAllIn($row['id'])
         ));
         
         return $category;
