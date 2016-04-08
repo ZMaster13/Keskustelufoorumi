@@ -4,7 +4,7 @@ class TopicController extends BaseController {
     public static function index($id) {
         $topic = Topic::find($id);
         $messages = Message::findAllIn($id);
-        $area = Area::find($topic->id);
+        $area = Area::find($topic->area);
         View::make('topic/index.html', array(
             'topic' => $topic,
             'messages' => $messages,

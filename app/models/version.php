@@ -15,12 +15,16 @@ class Version extends ExtendedBaseModel {
     public static function findAll() {
         return parent::getList('Version');
     }
+    
+    public static function findAllIn($id) {
+        return parent::getListIn('Version', 'message', $id);
+    }
 
     public static function makeOne($row) {
         $version = new Version(array(
             'id' => $row['id'],
             'message' => $row['message'],
-            'member' => $row['member'],
+            'member' => Member::find($row['member']),
             'title' => $row['title'],
             'content' => $row['content'],
             'time' => $row['time']
