@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](http://johkauha.users.cs.helsinki.fi/Foorumi/)
+* [Linkki sovellukseeni](http://johkauha.users.cs.helsinki.fi/forum/frontpage)
 * [Linkki dokumentaatiooni](https://github.com/ZMaster13/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf?raw=true)
 
 Käyttöliittymän suunnitelma:
