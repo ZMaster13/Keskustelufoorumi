@@ -31,8 +31,8 @@ abstract class ExtendedBaseModel extends BaseModel {
         return $list;
     }
     
-    public static function getListIn($table, $column, $value) {
-        $query = DB::connection()->prepare('SELECT * FROM ' . $table . ' WHERE ' . $column . ' = :value');
+    public static function getListIn($table, $sql, $value) {
+        $query = DB::connection()->prepare($sql);
         $query->execute(array('value' => $value));
         $rows = $query->fetchAll();
 

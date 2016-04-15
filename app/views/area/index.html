@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/forms.html" as forms %}
 {% block content %}
 
 <div class="page-header">
@@ -31,7 +32,7 @@
             
             {% if topic.latest_message != null %}
             <td class="hidden-xs hidden-sm"><a href="#">{{topic.latest_message.member.name}}</a>
-                <br><small><i class="glyphicon glyphicon-time"></i> {{topic.latest_message.latest_version.time}}</small></td>
+                <br><small><i class="glyphicon glyphicon-time"></i> {{topic.latest_message.time}}</small></td>
             {% else %}
             <td class="hidden-xs hidden-sm">Ei viestejä</td>
             {% endif %}
@@ -41,6 +42,13 @@
         
     </tbody>
 </table>
+
+{{ forms.new_button("#{base_path}/area/#{area.id}/new", "Uusi viestiketju") }}
+<div class="pull-right">
+{{ forms.delete_button("#{base_path}/area/#{area.id}/destroy", "Poista alue") }}
+</div>
+
+<div class="clearfix"></div>
 
 {% include 'pagination.html' %}
 

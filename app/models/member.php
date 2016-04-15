@@ -5,6 +5,7 @@ class Member extends ExtendedBaseModel {
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validateName', 'validatePassword');
     }
 
     public static function find($id) {
@@ -24,5 +25,24 @@ class Member extends ExtendedBaseModel {
         ));
         
         return $member;
+    }
+    
+     public function validateName() {
+        $errors = array();
+        
+        if (parent::validate_string_length($this->name, 3)) {
+            $errors[] = 'Käyttäjän nimen pitää olla vähintään kolme merkkiä pitkä!';
+        }
+        
+        return $errors;
+    }
+    
+    public function validatePassword() {
+        $errors = array();
+        
+        if (parent::validate_string_length($this->password, 8)) {
+            $errors[] = 'Salasanan pitää olla vähintään kahdeksan merkkiä pitkä!';
+        }
+       // TODO: Check if password contains at least one number.
     }
 }

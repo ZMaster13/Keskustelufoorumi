@@ -12,8 +12,8 @@ CREATE TABLE Team (
 );
 
 CREATE TABLE MemberTeam (
-	member INTEGER REFERENCES Member(id),
-	team INTEGER REFERENCES Team(id)
+	member INTEGER REFERENCES Member(id) NOT NULL,
+	team INTEGER REFERENCES Team(id) NOT NULL
 );
 
 CREATE TABLE Category (
@@ -23,28 +23,23 @@ CREATE TABLE Category (
 
 CREATE TABLE Area (
 	id SERIAL PRIMARY KEY,
-	category INTEGER REFERENCES Category(id),
-	name VARCHAR(50) NOT NULL
+	category INTEGER REFERENCES Category(id) NOT NULL,
+	name VARCHAR(50) NOT NULL,
+        description VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Topic (
 	id SERIAL PRIMARY KEY,
-	area INTEGER REFERENCES Area(id),
-	member INTEGER REFERENCES Member(id),
+	area INTEGER REFERENCES Area(id) NOT NULL,
+	member INTEGER REFERENCES Member(id) NOT NULL,
 	name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Message (
 	id SERIAL PRIMARY KEY,
-	topic INTEGER REFERENCES Topic(id),
-	member INTEGER REFERENCES Member(id)
-);
-
-CREATE TABLE Version (
-	id SERIAL PRIMARY KEY,
-	message INTEGER REFERENCES Message(id),
-        member INTEGER REFERENCES Member(id),
-	title VARCHAR(50) NOT NULL,
-	content VARCHAR(3000) NOT NULL,
-	time TIMESTAMP WITH TIME ZONE NOT NULL
+	topic INTEGER REFERENCES Topic(id) NOT NULL,
+	member INTEGER REFERENCES Member(id) NOT NULL,
+        title VARCHAR(50) NOT NULL,
+        content VARCHAR(3000) NOT NULL,
+        time TIMESTAMP WITH TIME ZONE NOT NULL
 );

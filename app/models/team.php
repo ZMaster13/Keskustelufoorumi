@@ -5,6 +5,7 @@ class Team extends ExtendedBaseModel {
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validateName');
     }
 
     public static function find($id) {
@@ -23,5 +24,15 @@ class Team extends ExtendedBaseModel {
         ));
         
         return $team;
+    }
+    
+    public function validateName() {
+        $errors = array();
+        
+        if (parent::validate_string_length($this->name, 3)) {
+            $errors[] = 'Ryhmän nimen pitää olla vähintään kolme merkkiä pitkä!';
+        }
+        
+        return $errors;
     }
 }

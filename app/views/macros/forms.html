@@ -1,0 +1,27 @@
+{% macro edit_button(action) %}
+<form action="{{action}}">
+    <button type="submit" class="btn btn-default pull-right message-tools">
+        <i class="glyphicon glyphicon-edit tools-icon"></i>
+    </button>
+</form>
+{% endmacro %}
+
+{% macro destroy_button(action) %}
+<form method="post" action="{{action}}">
+    <button type="submit" class="btn btn-default pull-right message-tools">
+        <i class="glyphicon glyphicon-remove tools-icon"></i>
+    </button>
+</form>
+{% endmacro %}
+
+{% macro delete_button(action, text) %}
+  <form method="post" action="{{action}}" style="display: inline-block;">
+    <button type="submit" class="btn btn-danger">{{text|default('Poista')}}</button>
+  </form>
+{% endmacro %}
+
+{% macro new_button(action, text) %}
+  <form method="post" action="{{action}}" style="display: inline-block;">
+    <button type="submit" class="btn btn-success">{{text|default('Uusi')}}</button>
+  </form>
+{% endmacro %}

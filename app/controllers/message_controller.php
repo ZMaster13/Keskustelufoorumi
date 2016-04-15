@@ -1,23 +1,22 @@
 <?php
 
 class MessageController extends BaseController {
+
     public static function index($id) {
-        $versions = Version::findAllIn($id);
         $message = Message::find($id);
         $topic = Topic::find($message->topic);
         $area = Area::find($topic->area);
-        
+
         View::make('message/index.html', array(
-            'versions' => $versions,
             'message' => $message,
             'topic' => $topic,
             'area' => $area
         ));
     }
-    
+
     public static function edit($id) {
         $message = Message::find($id);
-        
+
         View::make('message/edit.html', array(
             'message' => $message
         ));
@@ -25,20 +24,53 @@ class MessageController extends BaseController {
     
     public static function save($id) {
         $params = $_POST;
-        
-        $message = Message::find($id);
-        
-        $version = new Version(array(
-            'message' => $id,
+
+        $message = new Message(array(
+            'topic' => $id,
             'member' => 1, // TODO
             'title' => $params['title'],
             'content' => $params['content'],
             'time' => date('Y-m-d H:i:s')
         ));
-        $version->save();
+        $errors = $message->errors();
         
-        $message->latest_version = $version;
+        if (count($errors) == 0) {
+            $message->save();
+            Redirect::to('/topic/' . $message->topic, array('info' => 'Viesti lähetetty!'));
+        } else {
+            Redirect::to('/topic/' . $message->topic, array('errors' => $errors, 'attributes' => $message));
+        }
+    }
+    
+    public static function update($id) {
+        $params = $_POST;
         
-        Redirect::to('/topic/' . $message->topic, array('message' => 'Viesti lähetetty!'));
+        $attributes = array(
+            'id' => $id,
+            'topic' => Message::findTopic($id),
+            'member' => 1, // TODO
+            'title' => $params['title'],
+            'content' => $params['content'],
+            'time' => date('Y-m-d H:i:s'));
+        
+        $message = new Message($attributes);
+        $errors = $message->errors();
+        
+        if (count($errors) > 0) {
+            View::make('message/edit.html', array('errors' => $errors, 'message' => $message));
+        }
+        else {
+            $message->update();
+            
+            Redirect::to('/topic/' . $message->topic, array('info' => 'Viestin muokkaus onnistui!'));
+        }
+    }
+    
+    public static function destroy($id) {
+        $message = new Message(array('id' => $id));
+        $topic = Message::findTopic($id);
+        $message->destroy();
+        
+        Redirect::to('/topic/' . $topic, array('info' => 'Viesti poistettu!'));
     }
 }

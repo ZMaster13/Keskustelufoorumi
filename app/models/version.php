@@ -6,6 +6,7 @@ class Version extends ExtendedBaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validateTitle', 'validateContent');
     }
 
     public static function find($id) {
@@ -45,9 +46,28 @@ class Version extends ExtendedBaseModel {
 
         $this->id = $row['id'];
     }
+    
+    public function validateTitle() {
+        $errors = array();
+        
+        if (parent::validate_string_length($this->title, 3)) {
+            $errors[] = 'Otsikon pituuden pitää olla vähintään kolme merkkiä!';
+        }
+        
+        return $errors;
+    }
+    
+    public function validateContent() {
+        $errors = array();
+        
+        if (parent::validate_string_length($this->content, 1)) {
+            $errors[] = 'Viestin sisältö ei saa olla tyhjä!';
+        }
+        
+        return $errors;
+    }
 
     private static function formatTime($time) {
         
     }
-
 }

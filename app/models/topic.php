@@ -1,43 +1,54 @@
 <?php
 
 class Topic extends ExtendedBaseModel {
+
     public $id, $area, $member, $name, $number_of_messages, $latest_message;
-    
+
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validateName');
     }
-    
+
     public static function find($id) {
         return parent::getOne('Topic', $id);
     }
-    
+
     public static function findAll() {
         return parent::getList('Topic');
     }
-    
+
     public static function findAllIn($id) {
-        return parent::getListIn('Topic', 'area', $id);
+        return parent::getListIn('Topic', 'SELECT * FROM Topic '
+                        . 'WHERE area = :value', $id);
     }
-    
+
     public static function countMessagesIn($id) {
         $messages = parent::countIn('SELECT COUNT(Message.id) AS count '
-                . 'FROM Topic, Message '
-                . 'WHERE Message.topic = Topic.id '
-                . 'AND Topic.id = :id', $id);
-        
+                        . 'FROM Topic, Message '
+                        . 'WHERE Message.topic = Topic.id '
+                        . 'AND Topic.id = :id', $id);
+
         return $messages;
     }
-    
+
     public static function findLatestIn($id) {
         $message = parent::getLatestIn('Message', 'SELECT Message.* '
-                . 'FROM Topic, Message, Version '
-                . 'WHERE Message.topic = Topic.id '
-                . 'AND Version.message = Message.id '
-                . 'AND Topic.id = :id '
-                . 'ORDER BY Version.time DESC '
-                . 'LIMIT 1', $id);
-        
+                        . 'FROM Topic, Message '
+                        . 'WHERE Message.topic = Topic.id '
+                        . 'AND Topic.id = :id '
+                        . 'ORDER BY Message.time DESC '
+                        . 'LIMIT 1', $id);
+
         return $message;
+    }
+
+    public static function findArea($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Topic '
+                . 'WHERE Topic.id = :id');
+        $query->execute(array('id' => $id));
+        $row = $query->fetch();
+
+        return $row['area'];
     }
 
     public static function makeOne($row) {
@@ -49,7 +60,41 @@ class Topic extends ExtendedBaseModel {
             'number_of_messages' => Topic::countMessagesIn($row['id']),
             'latest_message' => Topic::findLatestIn($row['id'])
         ));
-        
+
         return $topic;
     }
+
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Topic '
+                . '(area, member, name) '
+                . 'VALUES (:area, :member, :name) RETURNING id');
+
+        $query->execute(array('area' => $this->area,
+            'member' => $this->member, 'name' => $this->name));
+
+
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+
+    public function destroy() {
+        foreach (Message::findAllIn($this->id) as $message) {
+            $message->destroy();
+        }
+
+        $query = DB::connection()->prepare('DELETE FROM Topic WHERE id = :id');
+
+        $query->execute(array('id' => $this->id));
+    }
+
+    public function validateName() {
+        $errors = array();
+
+        if (parent::validate_string_length($this->name, 3)) {
+            $errors[] = 'Viestiketjun nimen pituuden pitää olla vähintään kolme merkkiä!';
+        }
+
+        return $errors;
+    }
+
 }

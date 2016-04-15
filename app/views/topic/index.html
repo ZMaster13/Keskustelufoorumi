@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/forms.html" as forms %}
 {% block content %}
 
 <div class="page-header">
@@ -16,39 +17,40 @@
 
 <div class="panel panel-default">
     <div class="panel-heading message-topic">
-        <h3 class="panel-title pull-left">{{message.latest_version.title}}</h3>
+        <h3 class="panel-title pull-left">{{message.title}}</h3>
 
         <div class="input-group">
             <div class="input-group-btn btn-group-xs">
-                <button class="btn btn-default pull-right message-tools"><i class="glyphicon glyphicon-remove"></i></button>
-                <a href="{{base_path}}/message/edit/{{message.id}}" class="btn btn-default pull-right message-tools" role="button">
-                    <i class="glyphicon glyphicon-edit tools-icon"></i>
-                </a>
-                <a href="{{base_path}}/message/{{message.id}}" class="btn btn-default pull-right message-tools" role="button">
-                    <i class="glyphicon glyphicon-search tools-icon"></i>
-                </a>
+                {{ forms.destroy_button("#{base_path}/message/#{message.id}/destroy") }}
+                {{ forms.edit_button("#{base_path}/message/#{message.id}/edit") }}
             </div>
         </div>
     </div>
     <div class="panel-body">
-        {{message.latest_version.content}}
+        {{message.content}}
     </div>
     <div class="panel-footer message-info">
         <div class="pull-left user-info">
             <small>{{message.member.name}}</small>
         </div>
         <div class="pull-right user-info">
-            <small>Lähetetty {{message.latest_version.time}}</small>
+            <small>Lähetetty {{message.time}}</small>
         </div>
     </div>
 </div>
 
 {% endfor %}
 
+<div class="pull-right">
+    {{ forms.delete_button("#{base_path}/topic/#{topic.id}/destroy", "Poista viestiketju") }}
+</div>
+
+<div class="clearfix"></div>
+
 {% include 'pagination.html' %}
 
 <div class="clearfix"></div>
 
-{% include 'topic/send_message.html' %}
+{% include 'message/send_message.html' %}
 
 {% endblock %}

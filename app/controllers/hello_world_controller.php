@@ -7,11 +7,13 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        $category1 = Category::find(1);
-        $areas = Area::all();
-        // Kint-luokan dump-metodi tulostaa muuttujan arvon
-        Kint::dump($category1);
-        Kint::dump($areas);
+        $version = new Version(array(
+            'title' => 'd',
+            'content' => 'a'
+        ));
+        $errors = $version->errors();
+
+        Kint::dump($errors);
     }
 
     public static function frontpage() {

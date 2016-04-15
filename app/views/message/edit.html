@@ -11,14 +11,14 @@
         <h3 class="panel-title">Muokkaa viestiä</h3>
     </div>
     <div class="panel-body">
-        <form method="post" action="{{base_path}}/message/edit/{{message.id}}">
+        <form method="post" action="{{base_path}}/message/{{message.id}}/edit">
             <div class="form-group">
-                <label for="topic">Otsikko</label>
-                <input type="text" class="form-control" name="title" value="{{message.latest_version.title}}" required>
+                <label>Otsikko</label>
+                <input type="text" class="form-control" name="title" value="{{message.title}}" required>
             </div>
             <div class="form-group">
-                <label for="message">Viesti</label>
-                <textarea class="form-control" rows="8" name="content" required>{{message.latest_version.content}}</textarea>
+                <label>Viesti</label>
+                <textarea class="form-control" rows="8" name="content" required>{{message.content}}</textarea>
             </div>
             <button type="submit" class="btn btn-default" id="submit">Lähetä</button>
         </form>
