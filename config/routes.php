@@ -1,7 +1,7 @@
 <?php
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    FrontpageController::index();
 });
 
 $routes->get('/sandbox', function() {
@@ -60,10 +60,6 @@ $routes->post('/topic/:id/destroy', function($id) {
     TopicController::destroy($id);
 });
 
-$routes->get('/login', function() {
-    HelloWorldController::login();
-});
-
 $routes->get('/message/:id', function($id) {
     MessageController::index($id);
 });
@@ -77,4 +73,12 @@ $routes->post('/message/:id/edit', function($id) {
 
 $routes->post('/message/:id/destroy', function($id) {
     MessageController::destroy($id);
+});
+
+
+$routes->get('/login', function() {
+    UserController::login();
+});
+$routes->post('/login', function() {
+    UserController::handle_login();
 });

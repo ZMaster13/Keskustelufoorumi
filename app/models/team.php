@@ -1,7 +1,7 @@
 <?php
 
 class Team extends ExtendedBaseModel {
-    public $id, $name, $permissions;
+    public $id, $name, $admin;
     
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -20,7 +20,7 @@ class Team extends ExtendedBaseModel {
         $team = new Team(array(
             'id' => $row['id'],
             'name' => $row['name'],
-            'permissions' => $row['permissions']
+            'admin' => $row['admin']
         ));
         
         return $team;

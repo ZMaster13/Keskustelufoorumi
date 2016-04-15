@@ -26,13 +26,13 @@ class TopicController extends BaseController {
 
         $topicAttributes = array(
             'area' => $id,
-            'member' => 1, // TODO
+            'member' => parent::get_user_logged_in()->id,
             'name' => $params['name']);
         $topic = new Topic($topicAttributes);
         $topicErrors = $topic->errors();
         
         $messageAttributes = array(
-            'member' => 1, // TODO
+            'member' => parent::get_user_logged_in()->id,
             'title' => $params['title'],
             'content' => $params['content'],
             'time' => date('Y-m-d H:i:s'));

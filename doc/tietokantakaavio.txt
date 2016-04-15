@@ -1,20 +1,22 @@
 [Category|(pk) id : serial; name : string]
-[Area|(pk) id : serial; (fk) category : int; name : string]
+[Area|(pk) id : serial; (fk) category : int; name : string; description : string]
 [Topic|(pk) id : serial; (fk) area : int; (fk) member : int; name : string]
-[Message|(pk) id : serial; (fk) topic : int; (fk) member : int]
-[Version|(pk) id : serial; (fk) message : int; (fk) member : int; title : string; content : string; time : timestamp]
-[Member|(pk) id : serial; name : string; password : string; salt : string]
-[Team|(pk) id : serial; name : string; permissions : int]
+[Message|(pk) id : serial; (fk) topic : int; (fk) member : int; title : string; content : string; time : timestamp]
+[Member|(pk) id : serial; name : string; password : string]
+[Team|(pk) id : serial; name : string; admin : boolean]
 [MemberTeam|(fk) member : int; (fk) team : int]
+[Read|(fk) member : int; (fk) message : int; time : timestamp]
+
 
 [Area]1-*[Category]
-[Topic]1-*[Area]
+[Area]1-*[Topic]
 [Topic]1-*[Message]
-
-[Message]*-1[Member]
-[Message]1-*[Version]
-[Topic]*-1[Member]
-[Member]1-*[Version]
 
 [Team]1-*[MemberTeam]
 [MemberTeam]*-1[Member]
+
+[Message]*-1[Member]
+[Topic]*-1[Member]
+
+[Message]*-1[Read]
+[Read]1-*[Member]

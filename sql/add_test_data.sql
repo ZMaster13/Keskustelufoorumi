@@ -1,11 +1,34 @@
 INSERT INTO Member
-	(name, password, salt)
-	VALUES ('Käyttäjä', 'Käyttäjä', 'asdf');
-
+	(name, password)
+	VALUES ('Käyttäjä', 'Käyttäjä');
 
 INSERT INTO Team
-	(name, permissions)
-	VALUES ('Käyttäjät', 0);
+	(name, admin)
+	VALUES ('Käyttäjät', false);
+
+INSERT INTO MemberTeam
+	(member, team)
+	VALUES (1, 1);
+
+INSERT INTO Member
+	(name, password)
+	VALUES ('Admin', 'Admin');
+
+INSERT INTO Team
+	(name, admin)
+	VALUES ('Ylläpitäjät', true);
+
+INSERT INTO MemberTeam
+	(member, team)
+	VALUES (2, 2);
+
+INSERT INTO Member
+	(name, password)
+	VALUES ('Käyttäjä2', 'Käyttäjä2');
+
+INSERT INTO Team
+	(name, admin)
+	VALUES ('Käyttäjät', false);
 
 INSERT INTO MemberTeam
 	(member, team)

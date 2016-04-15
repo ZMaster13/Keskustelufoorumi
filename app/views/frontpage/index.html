@@ -42,18 +42,22 @@
         
         {% endfor %}
         
+        {% if user_logged_in.isAdmin %}
         <tr>
             <td></td>
             <td>{{ forms.new_button("#{base_path}/category/#{category.id}/new", "Uusi alue") }}</td>
             <td></td><td></td>
             <td>{{ forms.delete_button("#{base_path}/category/#{category.id}/destroy", "Poista kategoria") }}</td>
         </tr>
+        {% endif %}
     </tbody>
 </table>
 
 {% endfor %}
 
+{% if user_logged_in.isAdmin %}
 <div class="gap"></div>
 {{ forms.new_button("#{base_path}/frontpage/new", "Uusi kategoria") }}
+{% endif %}
 
 {% endblock %}

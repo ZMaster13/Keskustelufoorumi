@@ -27,7 +27,7 @@ class MessageController extends BaseController {
 
         $message = new Message(array(
             'topic' => $id,
-            'member' => 1, // TODO
+            'member' => parent::get_user_logged_in()->id,
             'title' => $params['title'],
             'content' => $params['content'],
             'time' => date('Y-m-d H:i:s')

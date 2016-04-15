@@ -19,12 +19,14 @@
     <div class="panel-heading message-topic">
         <h3 class="panel-title pull-left">{{message.title}}</h3>
 
+        {% if user_logged_in.isAdmin or user_logged_in.id == message.member.id %}
         <div class="input-group">
             <div class="input-group-btn btn-group-xs">
                 {{ forms.destroy_button("#{base_path}/message/#{message.id}/destroy") }}
                 {{ forms.edit_button("#{base_path}/message/#{message.id}/edit") }}
             </div>
         </div>
+        {% endif %}
     </div>
     <div class="panel-body">
         {{message.content}}
@@ -41,9 +43,11 @@
 
 {% endfor %}
 
+{% if user_logged_in.isAdmin %}
 <div class="pull-right">
     {{ forms.delete_button("#{base_path}/topic/#{topic.id}/destroy", "Poista viestiketju") }}
 </div>
+{% endif %}
 
 <div class="clearfix"></div>
 

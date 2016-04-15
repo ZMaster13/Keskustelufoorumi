@@ -44,9 +44,12 @@
 </table>
 
 {{ forms.new_button("#{base_path}/area/#{area.id}/new", "Uusi viestiketju") }}
+
+{% if user_logged_in.isAdmin %}
 <div class="pull-right">
 {{ forms.delete_button("#{base_path}/area/#{area.id}/destroy", "Poista alue") }}
 </div>
+{% endif %}
 
 <div class="clearfix"></div>
 
