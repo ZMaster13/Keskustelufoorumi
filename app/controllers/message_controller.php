@@ -3,6 +3,8 @@
 class MessageController extends BaseController {
 
     public static function index($id) {
+        self::check_logged_in();
+        
         $message = Message::find($id);
         $topic = Topic::find($message->topic);
         $area = Area::find($topic->area);
@@ -16,6 +18,8 @@ class MessageController extends BaseController {
 
     public static function edit($id) {
         $message = Message::find($id);
+        
+        self::check_logged_in_as($message->member);
 
         View::make('message/edit.html', array(
             'message' => $message
@@ -23,6 +27,8 @@ class MessageController extends BaseController {
     }
     
     public static function save($id) {
+        self::check_logged_in();
+        
         $params = $_POST;
 
         $message = new Message(array(
@@ -43,12 +49,16 @@ class MessageController extends BaseController {
     }
     
     public static function update($id) {
+        $prevMessage = Message::find($id);
+        
+        self::check_logged_in($prevMessage->member);
+        
         $params = $_POST;
         
         $attributes = array(
             'id' => $id,
-            'topic' => Message::findTopic($id),
-            'member' => 1, // TODO
+            'topic' => $prevMessage->topic,
+            'member' => $prevMessage->member,
             'title' => $params['title'],
             'content' => $params['content'],
             'time' => date('Y-m-d H:i:s'));
@@ -67,6 +77,8 @@ class MessageController extends BaseController {
     }
     
     public static function destroy($id) {
+        self::check_logged_in();
+        
         $message = new Message(array('id' => $id));
         $topic = Message::findTopic($id);
         $message->destroy();

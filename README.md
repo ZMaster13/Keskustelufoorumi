@@ -2,16 +2,16 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](http://johkauha.users.cs.helsinki.fi/Foorumi/)
+* [Linkki sovellukseeni](http://johkauha.users.cs.helsinki.fi/forum/)
 * [Linkki dokumentaatiooni](https://github.com/ZMaster13/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf?raw=true)
 
-Käyttöliittymän suunnitelma:
+Käyttäjätunnukset:
 
-* [Etusivu](http://johkauha.users.cs.helsinki.fi/forum/frontpage)
-* [Alue](http://johkauha.users.cs.helsinki.fi/forum/area)
-* [Viestiketju](http://johkauha.users.cs.helsinki.fi/forum/topic)
-* [Viestin muokkaus](http://johkauha.users.cs.helsinki.fi/forum/editmessage)
-* [Kirjautuminen](http://johkauha.users.cs.helsinki.fi/forum/login)
+|  Käyttäjä |  Salasana |       Oikeudet      |
+|:---------:|:---------:|:-------------------:|
+|  Käyttäjä |  Käyttäjä | Tavallinen käyttäjä |
+| Käyttäjä2 | Käyttäjä2 | Tavallinen käyttäjä |
+|   Admin   |   Admin   |      Ylläpitäjä     |
 
 ## Työn aihe
 

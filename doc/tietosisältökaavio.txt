@@ -2,7 +2,6 @@
 [Area]
 [Topic]
 [Message]
-[Version]
 [Member]
 [Team]
 
@@ -13,5 +12,3 @@
 
 [Member]1-*[Message]
 [Team]*-*[Member]
-[Message]++-1..*[Version]
-[Member]1-*[Version]

@@ -5,7 +5,7 @@
 [Member|(pk) id : serial; name : string; password : string]
 [Team|(pk) id : serial; name : string; admin : boolean]
 [MemberTeam|(fk) member : int; (fk) team : int]
-[Read|(fk) member : int; (fk) message : int; time : timestamp]
+[ReadTime|(fk) member : int; (fk) message : int; time : timestamp]
 
 
 [Area]1-*[Category]
@@ -18,5 +18,5 @@
 [Message]*-1[Member]
 [Topic]*-1[Member]
 
-[Message]*-1[Read]
-[Read]1-*[Member]
+[Message]*-1[ReadTime]
+[ReadTime]1-*[Member]

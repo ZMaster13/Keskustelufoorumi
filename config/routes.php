@@ -3,11 +3,6 @@
 $routes->get('/', function() {
     FrontpageController::index();
 });
-
-$routes->get('/sandbox', function() {
-    HelloWorldController::sandbox();
-});
-
 $routes->get('/frontpage', function() {
     FrontpageController::index();
 });
@@ -81,4 +76,8 @@ $routes->get('/login', function() {
 });
 $routes->post('/login', function() {
     UserController::handle_login();
+});
+
+$routes->get('/logout', function(){
+  UserController::logout();
 });

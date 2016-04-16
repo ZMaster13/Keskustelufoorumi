@@ -3,6 +3,8 @@
 class TopicController extends BaseController {
 
     public static function index($id) {
+        self::check_logged_in();
+        
         $topic = Topic::find($id);
         $messages = Message::findAllIn($id);
         $area = Area::find($topic->area);
@@ -14,6 +16,8 @@ class TopicController extends BaseController {
     }
     
     public static function newTopic($areaId) {
+        self::check_logged_in();
+        
         $area = Area::find($areaId);
         
         View::make('topic/new.html', array(
@@ -22,6 +26,8 @@ class TopicController extends BaseController {
     }
     
     public static function save($id) {
+        self::check_logged_in();
+        
         $params = $_POST;
 
         $topicAttributes = array(
@@ -45,13 +51,15 @@ class TopicController extends BaseController {
             $topic->save();
             $message->topic = $topic->id;
             $message->save();
-            Redirect::to('/area/' . $topic->area, array('info' => 'Viestialue luotu!'));
+            Redirect::to('/area/' . $topic->area, array('info' => 'Viestiketju luotu!'));
         } else {
             Redirect::to('/area/' . $id . '/new', array('errors' => $errors, 'attributes' => array_merge($topicAttributes, $messageAttributes)));
         }
     }
     
     public static function destroy($id) {
+        self::check_logged_in_as_admin();
+        
         $topic = new Topic(array('id' => $id));
         $area = Topic::findArea($id);
         $topic->destroy();

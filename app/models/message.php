@@ -41,7 +41,7 @@ class Message extends ExtendedBaseModel {
             'member' => Member::find($row['member']),
             'title' => $row['title'],
             'content' => $row['content'],
-            'time' => $row['time']
+            'time' => Message::formatTime($row['time'])
         ));
 
         return $message;
@@ -97,6 +97,6 @@ class Message extends ExtendedBaseModel {
     }
 
     private static function formatTime($time) {
-        
+        return $time;
     }
 }

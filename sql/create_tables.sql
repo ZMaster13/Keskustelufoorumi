@@ -40,5 +40,11 @@ CREATE TABLE Message (
 	member INTEGER REFERENCES Member(id) NOT NULL,
         title VARCHAR(50) NOT NULL,
         content VARCHAR(3000) NOT NULL,
-        time TIMESTAMP WITH TIME ZONE NOT NULL
+        time TIMESTAMP NOT NULL
+);
+
+CREATE TABLE ReadTime (
+        member INTEGER REFERENCES Member(id) NOT NULL,
+        message INTEGER REFERENCES Message(id) NOT NULL,
+        time TIMESTAMP NOT NULL
 );

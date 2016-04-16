@@ -3,6 +3,8 @@
 class AreaController extends BaseController {
 
     public static function index($id) {
+        self::check_logged_in();
+        
         $area = Area::find($id);
         $topics = Topic::findAllIn($id);
         View::make('area/index.html', array(
@@ -12,6 +14,8 @@ class AreaController extends BaseController {
     }
 
     public static function newArea($categoryId) {
+        self::check_logged_in_as_admin();
+        
         $category = Category::find($categoryId);
         View::make('area/new.html', array(
             'category' => $category)
@@ -19,6 +23,8 @@ class AreaController extends BaseController {
     }
 
     public static function save($id) {
+        self::check_logged_in_as_admin();
+        
         $params = $_POST;
 
         $attributes = array(
@@ -38,6 +44,8 @@ class AreaController extends BaseController {
     }
 
     public static function destroy($id) {
+        self::check_logged_in_as_admin();
+        
         $area = new Area(array('id' => $id));
         $area->destroy();
 

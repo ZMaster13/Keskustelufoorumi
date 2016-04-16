@@ -17,4 +17,9 @@ class UserController extends BaseController{
       Redirect::to('/', array('info' => 'Tervetuloa takaisin ' . $member->name . '!'));
     }
   }
+  
+  public static function logout() {
+      $_SESSION['user'] = null;
+      Redirect::to('/login', array('info' => 'Olet kirjautunut ulos'));
+  }
 }
