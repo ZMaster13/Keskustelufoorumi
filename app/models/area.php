@@ -1,6 +1,6 @@
 <?php
 
-class Area extends ExtendedBaseModel {
+class Area extends BaseModel {
     public $id, $category, $name, $description, $number_of_topics, $number_of_messages, $latest_message;
     
     public function __construct($attributes) {

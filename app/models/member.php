@@ -1,8 +1,8 @@
 <?php
 
-class Member extends ExtendedBaseModel {
+class Member extends BaseModel {
 
-    public $id, $name, $password, $teams, $isAdmin;
+    public $id, $name, $password, $isAdmin;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -17,22 +17,36 @@ class Member extends ExtendedBaseModel {
         return parent::getList('Member');
     }
 
+    public static function findAllIn($id) {
+        return parent::getListIn('Member', 'SELECT Member.* FROM Member, Team, MemberTeam '
+                        . 'WHERE MemberTeam.member = Member.id '
+                        . 'AND MemberTeam.team = Team.id '
+                        . 'AND Team.id = :value', $id);
+    }
+
+    public static function findAllNotIn($id) {
+        return parent::getListIn('Member', 'SELECT * FROM Member '
+                        . 'WHERE Member.id NOT IN ('
+                        . 'SELECT Member.id FROM Member, Team, MemberTeam '
+                        . 'WHERE MemberTeam.member = Member.id '
+                        . 'AND MemberTeam.team = Team.id '
+                        . 'AND Team.id = :value)', $id);
+    }
+
     public static function makeOne($row) {
         $id = $row['id'];
-        $teams = Member::getTeams($id);
-        $isAdmin = Member::isAdmin($teams);
-        
+        $isAdmin = Member::isAdmin($id);
+
         $member = new Member(array(
             'id' => $row['id'],
             'name' => $row['name'],
             'password' => $row['password'],
-            'teams' => $teams,
             'isAdmin' => $isAdmin
         ));
 
         return $member;
     }
-    
+
     public static function getTeams($id) {
         $query = DB::connection()->prepare(
                 'SELECT Team.* FROM Member, MemberTeam, Team '
@@ -63,14 +77,26 @@ class Member extends ExtendedBaseModel {
 
         return null;
     }
-    
-    public static function isAdmin($teams) {
-        foreach ($teams as $team) {
-            if ($team->admin) {
+
+    public static function isAdmin($id) {
+        $query = DB::connection()->prepare(
+                'SELECT Team.admin FROM Team, MemberTeam '
+                . 'WHERE Team.id = MemberTeam.team '
+                . 'AND MemberTeam.member = :id'
+        );
+
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+
+        if ($rows == null) {
+            return false;
+        }
+        foreach ($rows as $row) {
+            if ($row['admin']) {
                 return true;
             }
         }
-        
+
         return false;
     }
 

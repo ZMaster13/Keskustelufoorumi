@@ -14,14 +14,22 @@
 </form>
 {% endmacro %}
 
+{% macro add_button(action, text) %}
+<form method="post" action="{{action}}" style="display: inline-block;">
+    <button type="submit" class="btn btn-success">{{text|default('Lisää')}}</button>
+</form>
+{% endmacro %}
+
 {% macro delete_button(action, text) %}
-  <form method="post" action="{{action}}" style="display: inline-block;">
+<form method="post" action="{{action}}" style="display: inline-block;">
     <button type="submit" class="btn btn-danger">{{text|default('Poista')}}</button>
-  </form>
+</form>
 {% endmacro %}
 
 {% macro new_button(action, text) %}
-  <form method="post" action="{{action}}" style="display: inline-block;">
-    <button type="submit" class="btn btn-success">{{text|default('Uusi')}}</button>
-  </form>
+<a href="{{action}}" class="btn btn-success" role="button">{{text|default('Uusi')}}</a>
+{% endmacro %}
+
+{% macro edit_button_2(action, text) %}
+<a href="{{action}}" class="btn btn-warning" role="button">{{text|default('Muokkaa')}}</a>
 {% endmacro %}

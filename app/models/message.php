@@ -1,6 +1,6 @@
 <?php
 
-class Message extends ExtendedBaseModel {
+class Message extends BaseModel {
 
     public $id, $topic, $member, $title, $content, $time;
 

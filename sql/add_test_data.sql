@@ -26,13 +26,9 @@ INSERT INTO Member
 	(name, password)
 	VALUES ('Käyttäjä2', 'Käyttäjä2');
 
-INSERT INTO Team
-	(name, admin)
-	VALUES ('Käyttäjät', false);
-
 INSERT INTO MemberTeam
 	(member, team)
-	VALUES (1, 1);
+	VALUES (3, 1);
 
 INSERT INTO Category
 	(name)

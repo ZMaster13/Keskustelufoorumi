@@ -1,6 +1,6 @@
 <?php
 
-class Category extends ExtendedBaseModel {
+class Category extends BaseModel {
 
     public $id, $name, $areas;
 

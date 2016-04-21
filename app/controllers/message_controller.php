@@ -51,7 +51,7 @@ class MessageController extends BaseController {
     public static function update($id) {
         $prevMessage = Message::find($id);
         
-        self::check_logged_in($prevMessage->member);
+        self::check_logged_in_as($prevMessage->member);
         
         $params = $_POST;
         

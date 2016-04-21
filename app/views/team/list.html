@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% import "macros/forms.html" as forms %}
+{% block content %}
+
+<div class="page-header">
+    <h1 class="pull-left">Ryhmät</h1>
+    <div class="clearfix"></div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ryhmä</th>
+            <th>Jäseniä</th>
+            <th>Ylläpitäjä</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for team in teams %}
+        
+        <tr>
+            <td><a href="{{base_path}}/group/{{team.id}}">{{team.name}}</a></td>
+            <td>{{team.numberOfMembers}}</td>
+            <td>
+                {% if team.admin %}
+                <i class="glyphicon glyphicon-ok"></i>
+                {% endif %}
+            </td>
+            <td>
+                {% if user_logged_in.isAdmin %}
+                {{ forms.edit_button_2("#{base_path}/group/#{team.id}/edit", "Muokkaa") }}
+                {{ forms.delete_button("#{base_path}/group/#{team.id}/destroy", "Poista") }}
+                {% endif %}
+            </td>
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if user_logged_in.isAdmin %}
+{{ forms.new_button("#{base_path}/group/create", "Luo uusi ryhmä") }}
+{% endif %}
+
+{% endblock %}

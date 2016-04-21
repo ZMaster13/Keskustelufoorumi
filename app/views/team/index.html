@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% import "macros/forms.html" as forms %}
+{% block content %}
+
+<div class="page-header">
+    <h1 class="pull-left">Ryhmä {{team.name}}</h1>
+    <div class="clearfix"></div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Jäsenet</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for member in team.members %}
+
+        <tr>
+            <td><a href="{{base_path}}/user/{{member.id}}">{{member.name}}</a></td>
+            <td>
+                {% if user_logged_in.isAdmin %}
+                {{ forms.delete_button("#{base_path}/group/#{team.id}/remove/#{member.id}", "Poista ryhmästä") }}
+                {% endif %}
+            </td>
+        </tr>
+
+        {% endfor %}
+
+        {% if team.members == null %}
+        <td>Ei jäseniä</td>
+        {% endif %}
+</tbody>
+</table>
+
+{% if user_logged_in.isAdmin %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Muut jäsenet</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for member in otherMembers %}
+
+        <tr>
+            <td><a href="{{base_path}}/user/{{member.id}}">{{member.name}}</a></td>
+            <td>
+                {{ forms.add_button("#{base_path}/group/#{team.id}/add/#{member.id}", "Lisää ryhmään") }}
+            </td>
+        </tr>
+
+        {% endfor %}
+
+        {% if otherMembers == null %}
+        <td>Ei jäseniä</td>
+        {% endif %}
+
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

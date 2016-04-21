@@ -1,6 +1,6 @@
 <?php
 
-class Version extends ExtendedBaseModel {
+class Version extends BaseModel {
 
     public $id, $message, $member, $title, $content, $time;
 

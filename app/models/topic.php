@@ -1,6 +1,6 @@
 <?php
 
-class Topic extends ExtendedBaseModel {
+class Topic extends BaseModel {
 
     public $id, $area, $member, $name, $number_of_messages, $latest_message;
 
