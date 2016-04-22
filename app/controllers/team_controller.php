@@ -97,7 +97,7 @@ class TeamController extends BaseController {
 
         Team::addMember($teamId, $memberId);
 
-        Redirect::to('/group/' . $teamId, array('info' => 'Jäsen lisätty ryhmään onnistuneesti!'));
+        Redirect::to('/group/' . $teamId, array('info' => 'Käyttäjä lisätty ryhmään onnistuneesti!'));
     }
 
     public static function remove($teamId, $memberId) {
@@ -105,7 +105,7 @@ class TeamController extends BaseController {
 
         Team::removeMember($teamId, $memberId);
 
-        Redirect::to('/group/' . $teamId, array('info' => 'Jäsen poistettu ryhmästä onnistuneesti!'));
+        Redirect::to('/group/' . $teamId, array('info' => 'Käyttäjä poistettu ryhmästä onnistuneesti!'));
     }
 
     public function validateName() {
