@@ -21,28 +21,22 @@ class Topic extends BaseModel {
         return parent::getListIn('Topic', 'SELECT * FROM Topic '
                         . 'WHERE area = :value', $id);
     }
-    
+
     public static function findByTitle($title) {
-        return parent::getListIn('Topic',
-                'SELECT * FROM Topic '
-                . 'WHERE name LIKE :value',
-                $title);
+        return parent::getListIn('Topic', 'SELECT * FROM Topic '
+                        . 'WHERE name LIKE :value', $title);
     }
-    
+
     public static function findByWriter($writer) {
-        return parent::getListIn('Topic',
-                'SELECT Topic.* FROM Topic, Member '
-                . 'WHERE Topic.member = Member.id '
-                . 'AND Member.name LIKE :value',
-                $writer);
+        return parent::getListIn('Topic', 'SELECT Topic.* FROM Topic, Member '
+                        . 'WHERE Topic.member = Member.id '
+                        . 'AND Member.name LIKE :value', $writer);
     }
-    
+
     public static function findByTime($time) {
-        return parent::getListIn('Topic',
-                'SELECT DISTINCT Topic.* FROM Topic, Message '
-                . 'WHERE message.topic = Topic.id '
-                . 'AND Message.time >= :value',
-                $time);
+        return parent::getListIn('Topic', 'SELECT DISTINCT Topic.* FROM Topic, Message '
+                        . 'WHERE message.topic = Topic.id '
+                        . 'AND Message.time >= :value', $time);
     }
 
     public static function countMessagesIn($id) {
