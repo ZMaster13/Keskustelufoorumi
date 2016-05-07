@@ -8,6 +8,11 @@ class TopicController extends BaseController {
         $topic = Topic::find($id);
         $messages = Message::findAllIn($id);
         $area = Area::find($topic->area);
+        
+        foreach ($messages as $message) {
+            $message->markAsRead(parent::get_user_logged_in()->id);
+        }
+        
         View::make('topic/index.html', array(
             'topic' => $topic,
             'messages' => $messages,
@@ -59,10 +64,8 @@ class TopicController extends BaseController {
 
     public static function destroy($id) {
         $topic = Topic::find($id);
-        
         self::check_logged_in_as($topic->member);
 
-        $topic = new Topic(array('id' => $id));
         $area = Topic::findArea($id);
         $topic->destroy();
 

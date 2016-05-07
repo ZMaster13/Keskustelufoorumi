@@ -1,19 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-{{ basic.page_header("Uusi alue") }}
-
-<ol class="breadcrumb">
-    <li><a href="{{base_path}}/frontpage">Etusivu</a></li>
-    <li><a href="{{base_path}}/area/new">Uusi alue</a></li>
-</ol>
+{{ basic.page_header("Muokkaa aluetta") }}
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Luo uusi alue</h3>
+        <h3 class="panel-title">Muokkaa aluetta</h3>
     </div>
     <div class="panel-body">
-        <form method="post" action="{{base_path}}/category/{{category.id}}">
+        <form method="post" action="{{base_path}}/area/{{attributes.id}}/edit">
             <div class="form-group">
                 <label>Alue</label>
                 <input type="text" class="form-control" name="name" value="{{attributes.name}}" required>

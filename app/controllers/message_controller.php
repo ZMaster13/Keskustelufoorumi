@@ -15,16 +15,6 @@ class MessageController extends BaseController {
             'area' => $area
         ));
     }
-
-    public static function edit($id) {
-        $message = Message::find($id);
-        
-        self::check_logged_in_as($message->member->id);
-
-        View::make('message/edit.html', array(
-            'message' => $message
-        ));
-    }
     
     public static function save($id) {
         self::check_logged_in();
@@ -46,6 +36,16 @@ class MessageController extends BaseController {
         } else {
             Redirect::to('/topic/' . $message->topic, array('errors' => $errors, 'attributes' => $message));
         }
+    }
+    
+    public static function edit($id) {
+        $message = Message::find($id);
+        
+        self::check_logged_in_as($message->member->id);
+
+        View::make('message/edit.html', array(
+            'message' => $message
+        ));
     }
     
     public static function update($id) {

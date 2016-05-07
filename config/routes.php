@@ -32,6 +32,12 @@ $routes->post('/area/:id', function($id) {
 $routes->get('/area/:id/new', function($id) {
     TopicController::newTopic($id);
 });
+$routes->get('/area/:id/edit', function($id) {
+    AreaController::edit($id);
+});
+$routes->post('/area/:id/edit', function($id) {
+    AreaController::update($id);
+});
 $routes->post('/area/:id/destroy', function($id) {
     AreaController::destroy($id);
 });

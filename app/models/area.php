@@ -77,6 +77,16 @@ class Area extends BaseModel {
         $this->id = $row['id'];
     }
     
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Area SET '
+                . '(name, description) = '
+                . '(:name, :description) '
+                . 'WHERE id = :id');
+        
+        $query->execute(array('id' => $this->id, 'name' => $this->name,
+            'description' => $this->description));
+    }
+    
     public function destroy() {
         foreach (Topic::findAllIn($this->id) as $topic) {
             $topic->destroy();
@@ -90,8 +100,8 @@ class Area extends BaseModel {
     public function validateName() {
         $errors = array();
         
-        if (parent::validate_string_length($this->name, 3)) {
-            $errors[] = 'Alueen nimen pituuden pitää olla vähintään kolme merkkiä!';
+        if (parent::validate_string_length($this->name, 3, 50)) {
+            $errors[] = 'Alueen nimen pituuden pitää olla 3-50 merkkiä!';
         }
         
         return $errors;
@@ -100,8 +110,8 @@ class Area extends BaseModel {
     public function validateDescription() {
         $errors = array();
         
-        if (parent::validate_string_length($this->description, 3)) {
-            $errors[] = 'Alueen kuvauksen pituuden pitää olla vähintään kolme merkkiä!';
+        if (parent::validate_string_length($this->description, 3, 50)) {
+            $errors[] = 'Alueen kuvauksen pituuden pitää olla 3-50 merkkiä!';
         }
         
         return $errors;

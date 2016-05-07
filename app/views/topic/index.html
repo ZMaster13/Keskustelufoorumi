@@ -1,11 +1,7 @@
 {% extends "base.html" %}
-{% import "macros/forms.html" as forms %}
 {% block content %}
 
-<div class="page-header">
-    <h1 class="pull-left">{{topic.name}}</h1>
-    <div class="clearfix"></div>
-</div>
+{{ basic.page_header("#{topic.name}") }}
 
 <ol class="breadcrumb">
     <li><a href="{{base_path}}/frontpage">Etusivu</a></li>
@@ -33,10 +29,22 @@
     </div>
     <div class="panel-footer message-info">
         <div class="pull-left user-info">
-            <small>{{message.member.name}}</small>
+            <small><b>Lähettänyt:</b> {{message.member.name}}</small>
         </div>
         <div class="pull-right user-info">
             <small>Lähetetty {{message.time}}</small>
+        </div>
+    </div>
+    <div class="panel-footer message-info">
+        <div class="user-info">
+            <small>Lukeneet käyttäjät:
+            {% for member in message.readMembers %}
+            {{member.name}}
+            {% endfor %}
+            {% if message.readMembers|length == 0 %}
+            Ei käyttäjiä
+            {% endif %}
+            </small>
         </div>
     </div>
 </div>
@@ -50,6 +58,7 @@
 {% endif %}
 
 <div class="clearfix"></div>
+<br>
 
 {% include 'pagination.html' %}
 

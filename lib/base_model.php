@@ -27,12 +27,15 @@ abstract class BaseModel {
         return $errors;
     }
 
-    public function validate_string_length($string, $length) {
+    public function validate_string_length($string, $minLength, $maxLength) {
 
         if ($string == '' || $string == null) {
             return true;
         }
-        if (strlen($string) < $length) {
+        if (strlen($string) < $minLength) {
+            return true;
+        }
+        if (strlen($string) > $maxLength) {
             return true;
         }
         

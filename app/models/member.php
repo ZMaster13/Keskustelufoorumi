@@ -129,8 +129,8 @@ class Member extends BaseModel {
     public function validateName() {
         $errors = array();
 
-        if (parent::validate_string_length($this->name, 3)) {
-            $errors[] = 'Käyttäjän nimen pitää olla vähintään kolme merkkiä pitkä!';
+        if (parent::validate_string_length($this->name, 3, 50)) {
+            $errors[] = 'Käyttäjän nimen pitää olla 3-50 merkkiä pitkä!';
         }
 
         return $errors;
@@ -139,8 +139,8 @@ class Member extends BaseModel {
     public function validatePassword() {
         $errors = array();
 
-        if (parent::validate_string_length($this->password, 8)) {
-            $errors[] = 'Salasanan pitää olla vähintään kahdeksan merkkiä pitkä!';
+        if (parent::validate_string_length($this->password, 8, 50)) {
+            $errors[] = 'Salasanan pitää olla 8-50 merkkiä pitkä!';
         }
         if ($this->password != $this->confirmPassword) {
             $errors[] = 'Annetut salasanat eivät täsmänneet!';

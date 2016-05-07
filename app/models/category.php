@@ -47,8 +47,8 @@ class Category extends BaseModel {
     public function validateName() {
         $errors = array();
 
-        if (parent::validate_string_length($this->name, 3)) {
-            $errors[] = 'Kategorian nimen pituuden pitää olla vähintään kolme merkkiä!';
+        if (parent::validate_string_length($this->name, 3, 50)) {
+            $errors[] = 'Kategorian nimen pituuden pitää olla 3-50 merkkiä!';
         }
 
         return $errors;

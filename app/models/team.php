@@ -73,8 +73,8 @@ class Team extends BaseModel {
     public function validateName() {
         $errors = array();
 
-        if (parent::validate_string_length($this->name, 3)) {
-            $errors[] = 'Ryhmän nimen pitää olla vähintään kolme merkkiä pitkä!';
+        if (parent::validate_string_length($this->name, 3, 50)) {
+            $errors[] = 'Ryhmän nimen pitää olla 3-50 merkkiä pitkä!';
         }
 
         return $errors;

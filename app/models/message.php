@@ -2,7 +2,7 @@
 
 class Message extends BaseModel {
 
-    public $id, $topic, $member, $title, $content, $time;
+    public $id, $topic, $member, $title, $content, $time, $readMembers;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -33,6 +33,14 @@ class Message extends BaseModel {
         
         return $row['topic'];
     }
+    
+    public static function findReadMembers($messageId) {
+        return parent::getListIn('Member',
+                'SELECT Member.* FROM ReadTime, Member '
+                . 'WHERE ReadTime.member = Member.id '
+                . 'AND ReadTime.message = :value',
+                $messageId);
+    }
 
     public static function makeOne($row) {
         $message = new Message(array(
@@ -41,7 +49,8 @@ class Message extends BaseModel {
             'member' => Member::find($row['member']),
             'title' => $row['title'],
             'content' => $row['content'],
-            'time' => Message::formatTime($row['time'])
+            'time' => Message::formatTime($row['time']),
+            'readMembers' => Message::findReadMembers($row['id'])
         ));
 
         return $message;
@@ -76,11 +85,25 @@ class Message extends BaseModel {
         $query->execute(array('id' => $this->id));
     }
     
+    public function markAsRead($userId) {
+        $time = date('Y-m-d H:i:s');
+        $query = DB::connection()->prepare('INSERT INTO ReadTime '
+                . '(member, message, time) '
+                . 'SELECT :member, :message, :time '
+                . 'WHERE NOT EXISTS ('
+                . 'SELECT 1 FROM ReadTime '
+                . 'WHERE member = :member '
+                . 'AND message = :message)');
+        
+        $query->execute(array('member' => $userId, 'message' => $this->id,
+            'time' => $time));
+    }
+    
     public function validateTitle() {
         $errors = array();
         
-        if (parent::validate_string_length($this->title, 3)) {
-            $errors[] = 'Viestin otsikon pitää olla vähintään kolme merkkiä pitkä!';
+        if (parent::validate_string_length($this->title, 3, 50)) {
+            $errors[] = 'Viestin otsikon pitää olla 3-50 merkkiä pitkä!';
         }
         
         return $errors;
@@ -89,8 +112,8 @@ class Message extends BaseModel {
     public function validateContent() {
         $errors = array();
         
-        if (parent::validate_string_length($this->content, 1)) {
-            $errors[] = 'Viestin sisältö ei saa olla tyhjä!';
+        if (parent::validate_string_length($this->content, 1, 3000)) {
+            $errors[] = 'Viestin sisällön pitää olla 1-3000 merkkiä pitkä!';
         }
         
         return $errors;

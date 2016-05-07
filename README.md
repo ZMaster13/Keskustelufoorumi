@@ -12,6 +12,7 @@ Käyttäjätunnukset:
 |  Käyttäjä |  Käyttäjä | Tavallinen käyttäjä |
 | Käyttäjä2 | Käyttäjä2 | Tavallinen käyttäjä |
 |   Admin   |   Admin   |      Ylläpitäjä     |
+|   Admin2  | Admin1234 |      Ylläpitäjä     |
 
 ## Työn aihe
 

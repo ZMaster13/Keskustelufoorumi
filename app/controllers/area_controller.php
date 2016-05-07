@@ -42,6 +42,39 @@ class AreaController extends BaseController {
             Redirect::to('/category/' . $id . '/new', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
+    
+    public static function edit($id) {
+        self::check_logged_in_as_admin();
+        
+        $area = Area::find($id);
+
+        View::make('area/edit.html', array(
+            'attributes' => $area
+        ));
+    }
+    
+    public static function update($id) {
+        self::check_logged_in_as_admin();
+        
+        $params = $_POST;
+        
+        $attributes = array(
+            'id' => $id,
+            'name' => $params['name'],
+            'description' => $params['description']);
+        
+        $area = new Area($attributes);
+        $errors = $area->errors();
+        
+        if (count($errors) > 0) {
+            View::make('area/edit.html', array('errors' => $errors, 'attributes' => $area));
+        }
+        else {
+            $area->update();
+            
+            Redirect::to('/area/' . $area->id, array('info' => 'Alueen muokkaus onnistui!'));
+        }
+    }
 
     public static function destroy($id) {
         self::check_logged_in_as_admin();
