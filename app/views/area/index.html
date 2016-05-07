@@ -2,6 +2,7 @@
 {% import "macros/forms.html" as forms %}
 {% block content %}
 
+{% if area.id != -1 %}
 <div class="page-header">
     <h1 class="pull-left">{{area.name}}</h1>
     <div class="clearfix"></div>
@@ -12,6 +13,14 @@
     <li><a href="{{base_path}}/area/{{area.id}}">{{area.name}}</a></li>
 </ol>
 
+{% else %}
+<div class="page-header">
+    <h1 class="pull-left">Hakutulokset</h1>
+    <div class="clearfix"></div>
+</div>
+{% endif %}
+
+{% if area.id != -1 or topics|length > 0 %}
 <table class="table forum table-striped">
     <thead>
         <tr>
@@ -42,10 +51,15 @@
         
     </tbody>
 </table>
+{% else %}
+<h3>Ei tuloksia</h3>
+{% endif %}
 
+{% if area.id != -1 %}
 {{ forms.new_button("#{base_path}/area/#{area.id}/new", "Uusi viestiketju") }}
+{% endif %}
 
-{% if user_logged_in.isAdmin %}
+{% if (user_logged_in.isAdmin) and (area.id != -1) %}
 <div class="pull-right">
 {{ forms.delete_button("#{base_path}/area/#{area.id}/destroy", "Poista alue") }}
 </div>

@@ -19,7 +19,7 @@ class MessageController extends BaseController {
     public static function edit($id) {
         $message = Message::find($id);
         
-        self::check_logged_in_as($message->member);
+        self::check_logged_in_as($message->member->id);
 
         View::make('message/edit.html', array(
             'message' => $message
@@ -77,9 +77,10 @@ class MessageController extends BaseController {
     }
     
     public static function destroy($id) {
-        self::check_logged_in();
+        $message = Message::find($id);
         
-        $message = new Message(array('id' => $id));
+        self::check_logged_in_as($message->member->id);
+        
         $topic = Message::findTopic($id);
         $message->destroy();
         

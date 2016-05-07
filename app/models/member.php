@@ -2,7 +2,7 @@
 
 class Member extends BaseModel {
 
-    public $id, $name, $password, $isAdmin;
+    public $id, $name, $password, $confirmPassword, $isAdmin;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -99,6 +99,32 @@ class Member extends BaseModel {
 
         return false;
     }
+    
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Member (name, password) '
+                . 'VALUES (:name, :password) RETURNING id');
+
+        $query->execute(array('name' => $this->name, 'password' => $this->password));
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+    
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Member SET '
+                . '(name, password) = '
+                . '(:name, :password) '
+                . 'WHERE id = :id');
+
+        $query->execute(array('id' => $this->id, 'name' => $this->name, 'password' => $this->password));
+    }
+    
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM MemberTeam WHERE member = :id');
+        $query->execute(array('id' => $this->id));
+
+        $query2 = DB::connection()->prepare('DELETE FROM Member WHERE id = :id');
+        $query2->execute(array('id' => $this->id));
+    }
 
     public function validateName() {
         $errors = array();
@@ -116,7 +142,12 @@ class Member extends BaseModel {
         if (parent::validate_string_length($this->password, 8)) {
             $errors[] = 'Salasanan pitää olla vähintään kahdeksan merkkiä pitkä!';
         }
+        if ($this->password != $this->confirmPassword) {
+            $errors[] = 'Annetut salasanat eivät täsmänneet!';
+        }
         // TODO: Check if password contains at least one number.
+        
+        return $errors;
     }
 
 }

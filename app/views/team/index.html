@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% import "macros/forms.html" as forms %}
 {% block content %}
 
 <div class="page-header">
@@ -19,7 +18,7 @@
         {% for member in team.members %}
 
         <tr>
-            <td><a href="{{base_path}}/user/{{member.id}}">{{member.name}}</a></td>
+            <td><a href="#">{{member.name}}</a></td>
             <td>
                 {% if user_logged_in.isAdmin %}
                 {{ forms.delete_button("#{base_path}/group/#{team.id}/remove/#{member.id}", "Poista ryhmästä") }}
@@ -32,7 +31,7 @@
         {% if team.members == null %}
         <td>Ei jäseniä</td>
         {% endif %}
-</tbody>
+    </tbody>
 </table>
 
 {% if user_logged_in.isAdmin %}
@@ -48,7 +47,7 @@
         {% for member in otherMembers %}
 
         <tr>
-            <td><a href="{{base_path}}/user/{{member.id}}">{{member.name}}</a></td>
+            <td><a href="#">{{member.name}}</a></td>
             <td>
                 {{ forms.add_button("#{base_path}/group/#{team.id}/add/#{member.id}", "Lisää ryhmään") }}
             </td>
@@ -59,7 +58,6 @@
         {% if otherMembers == null %}
         <td>Ei käyttäjiä</td>
         {% endif %}
-
     </tbody>
 </table>
 {% endif %}

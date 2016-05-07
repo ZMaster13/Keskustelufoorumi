@@ -58,7 +58,9 @@ class TopicController extends BaseController {
     }
 
     public static function destroy($id) {
-        self::check_logged_in_as_admin();
+        $topic = Topic::find($id);
+        
+        self::check_logged_in_as($topic->member);
 
         $topic = new Topic(array('id' => $id));
         $area = Topic::findArea($id);
@@ -66,5 +68,4 @@ class TopicController extends BaseController {
 
         Redirect::to('/area/' . $area, array('info' => 'Viestiketju poistettu!'));
     }
-
 }

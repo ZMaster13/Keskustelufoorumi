@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% import "macros/forms.html" as forms %}
+{% block content %}
+
+<div class="page-header">
+    <h1 class="pull-left">Käyttäjät</h1>
+    <div class="clearfix"></div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Käyttäjät</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for member in members %}
+
+        <tr>
+            <td><a href="{{base_path}}/user/{{member.id}}/edit">{{member.name}}</a></td>
+            <td>
+                {% if user_logged_in.id != member.id %}
+                {{ forms.delete_button("#{base_path}/user/#{member.id}/remove", "Poista käyttäjä") }}
+                {% endif %}
+            </td>
+        </tr>
+
+        {% endfor %}
+
+        {% if members == null %}
+        <td>Ei käyttäjiä</td>
+        {% endif %}
+    </tbody>
+</table>
+
+{{ forms.new_button("#{base_path}/user/create", "Uusi käyttäjä") }}
+
+{% endblock %}

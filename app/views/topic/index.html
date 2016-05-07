@@ -43,7 +43,7 @@
 
 {% endfor %}
 
-{% if user_logged_in.isAdmin %}
+{% if user_logged_in.isAdmin or user_logged_in.id == topic.member.id %}
 <div class="pull-right">
     {{ forms.delete_button("#{base_path}/topic/#{topic.id}/destroy", "Poista viestiketju") }}
 </div>

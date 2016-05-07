@@ -53,8 +53,6 @@ class TeamController extends BaseController {
         
         $team = Team::find($id);
 
-        self::check_logged_in_as_admin();
-
         View::make('team/edit.html', array(
             'team' => $team
         ));

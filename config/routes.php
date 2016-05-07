@@ -103,3 +103,35 @@ $routes->post('/group/:teamId/add/:memberId', function($teamId, $memberId) {
 $routes->post('/group/:teamId/remove/:memberId', function($teamId, $memberId) {
     TeamController::remove($teamId, $memberId);
 });
+
+$routes->get('/users', function() {
+    UserController::listUsers();
+});
+$routes->post('/users', function() {
+    UserController::save();
+});
+$routes->get('/user/create', function() {
+    UserController::newUser();
+});
+$routes->get('/user/:id/edit', function($id) {
+    UserController::edit($id);
+});
+$routes->post('/user/:id/edit', function($id) {
+    UserController::update($id);
+});
+$routes->post('/user/:id/remove', function($id) {
+    UserController::destroy($id);
+});
+
+$routes->get('/search', function() {
+    SearchController::search();
+});
+$routes->post('/search/title', function() {
+    SearchController::searchByTitle();
+});
+$routes->post('/search/writer', function() {
+    SearchController::searchByWriter();
+});
+$routes->post('/search/time', function() {
+    SearchController::searchByTime();
+});

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+{{ basic.page_header("Hae viestiketjuja") }}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#viestiketju">Nimi</a></li>
+    <li><a data-toggle="tab" href="#kirjoittaja">Kirjoittaja</a></li>
+    <li><a data-toggle="tab" href="#aika">Aika</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="viestiketju" class="tab-pane in active">
+        <br>
+        <form method="post" action="{{base_path}}/search/title">
+            <div class="form-group">
+                <label>Viestiketjun nimi</label>
+                <input type="text" class="form-control" name="title" value="{{attributes.title}}" required>
+            </div>
+            <button type="submit" class="btn btn-default" id="submit">Hae</button>
+        </form>
+    </div>
+
+    <div id="kirjoittaja" class="tab-pane">
+        <br>
+        <form method="post" action="{{base_path}}/search/writer">
+            <div class="form-group">
+                <label>Viestiketjun kirjoittaja</label>
+                <input type="text" class="form-control" name="writer" value="{{attributes.writer}}" required>
+            </div>
+            <button type="submit" class="btn btn-default" id="submit">Hae</button>
+        </form>
+    </div>
+
+    <div id="aika" class="tab-pane">
+        <br>
+        <form method="post" action="{{base_path}}/search/time">
+            <label>Viestiketjun ikä (YYYY-MM-dd)</label>
+            <input type="text" class="form-control" name="time" value="{{attributes.time}}" required>
+            <br>
+            <div class="clearfix"></div>
+            <br>
+            <button type="submit" class="btn btn-default" id="submit">Hae</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

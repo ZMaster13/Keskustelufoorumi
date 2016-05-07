@@ -21,6 +21,29 @@ class Topic extends BaseModel {
         return parent::getListIn('Topic', 'SELECT * FROM Topic '
                         . 'WHERE area = :value', $id);
     }
+    
+    public static function findByTitle($title) {
+        return parent::getListIn('Topic',
+                'SELECT * FROM Topic '
+                . 'WHERE name LIKE :value',
+                $title);
+    }
+    
+    public static function findByWriter($writer) {
+        return parent::getListIn('Topic',
+                'SELECT Topic.* FROM Topic, Member '
+                . 'WHERE Topic.member = Member.id '
+                . 'AND Member.name LIKE :value',
+                $writer);
+    }
+    
+    public static function findByTime($time) {
+        return parent::getListIn('Topic',
+                'SELECT DISTINCT Topic.* FROM Topic, Message '
+                . 'WHERE message.topic = Topic.id '
+                . 'AND Message.time >= :value',
+                $time);
+    }
 
     public static function countMessagesIn($id) {
         $messages = parent::countIn('SELECT COUNT(Message.id) AS count '
@@ -55,7 +78,7 @@ class Topic extends BaseModel {
         $topic = new Topic(array(
             'id' => $row['id'],
             'area' => $row['area'],
-            'member' => $row['member'],
+            'member' => Member::find($row['member']),
             'name' => $row['name'],
             'number_of_messages' => Topic::countMessagesIn($row['id']),
             'latest_message' => Topic::findLatestIn($row['id'])

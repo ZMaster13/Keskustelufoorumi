@@ -66,7 +66,7 @@ class Message extends BaseModel {
                 . '(:topic, :member, :title, :content) '
                 . 'WHERE id = :id');
         
-        $query->execute(array('id' => $this->id, 'topic' => $this->topic, 'member' => $this->member,
+        $query->execute(array('id' => $this->id, 'topic' => $this->topic, 'member' => $this->member->id,
             'title' => $this->title, 'content' => $this->content));
     }
     
