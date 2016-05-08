@@ -64,7 +64,7 @@ class TopicController extends BaseController {
 
     public static function destroy($id) {
         $topic = Topic::find($id);
-        self::check_logged_in_as($topic->member);
+        self::check_logged_in_as($topic->member->id);
 
         $area = Topic::findArea($id);
         $topic->destroy();

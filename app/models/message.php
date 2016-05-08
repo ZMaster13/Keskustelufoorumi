@@ -80,9 +80,11 @@ class Message extends BaseModel {
     }
     
     public function destroy() {
-        $query = DB::connection()->prepare('DELETE FROM Message WHERE id = :id');
-        
+        $query = DB::connection()->prepare('DELETE FROM ReadTime WHERE message = :id');
         $query->execute(array('id' => $this->id));
+        
+        $query2 = DB::connection()->prepare('DELETE FROM Message WHERE id = :id');
+        $query2->execute(array('id' => $this->id));
     }
     
     public function markAsRead($userId) {

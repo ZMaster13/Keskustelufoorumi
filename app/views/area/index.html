@@ -41,6 +41,14 @@
     </tr>
 
     {% endfor %}
+    
+    {% if topics|length == 0 %}
+    <tr>
+        <td></td>
+        <td>Ei viestejä</td>
+        <td></td><td></td><td></td>
+    </tr>
+    {% endif %}
 
 </tbody>
 </table>
