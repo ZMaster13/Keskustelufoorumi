@@ -3,7 +3,7 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://johkauha.users.cs.helsinki.fi/forum/)
-* [Linkki dokumentaatiooni](https://github.com/ZMaster13/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf?raw=true)
+* [Linkki dokumentaatiooni](https://github.com/ZMaster13/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
 Käyttäjätunnukset:
 
